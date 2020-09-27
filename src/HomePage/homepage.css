@@ -1,0 +1,107 @@
+.home-page-hero-container {
+  margin: 0 auto;
+  background: url('../assets/images/farm-hero-image.jpg') no-repeat center center;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.character-name-input {
+  border-radius: 5px;
+  border: solid 1px grey;
+  width: 250px;
+  height: 24px;
+  padding: 10px;
+  font-size: 24px;
+  transition: 0.5s;
+}
+
+.character-name-input:focus {
+  border: solid 1px #222222;
+  outline: unset;
+  width: 300px;
+  height: 36px;
+}
+
+.home-page-welcome {
+  text-shadow: 1px 1px #000;
+  color: white;
+  /* -webkit-text-stroke: 1px lightgrey; */
+  font-size: 72pt;
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: easetextin 2s;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: contain;
+  opacity: 0.8;
+  padding-bottom: 200px;
+}
+
+.character-name-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: contain;
+  animation: easeinputin 3s;
+}
+
+@keyframes easeinputin {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes easetextin {
+  /* 0% {
+    left: 20%;
+    opacity: 0;
+  }
+  10% {
+    left: 10%;
+    opacity: 0.2;
+  }
+  20% {
+    left: 0;
+    opacity: 1;
+  }
+  90% {
+    left: -8%;
+    opacity: 1;
+  }
+  100% {
+    left: -20%;
+    opacity: 0;
+  } */
+  from {
+    left: 20%;
+    opacity: 0;
+    padding-bottom: 0;
+  }
+  to {
+    left: 0;
+    opacity: 0.8;
+    padding-bottom: 200px;
+  }
+}

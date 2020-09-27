@@ -8,6 +8,7 @@ const CharacterSearchContainer = () => {
   const confirmUsername = useCallback(name => {
     console.log('username is', name)
     fetchSwapiLuke()
+      .then(res => console.log(res))
   }, [])
 
   return (
