@@ -12,12 +12,20 @@ const app = express()
 app.use(express.static(path.resolve(__dirname, '../src/build')));
 app.use(cors())
 
-app.get('/test', function (req, res) {
-  console.log('RQEUEST', req, 'RESPONSE', res)
-  // https://swapi.dev/api/people/1/
-  request('https://swapi.dev/api/people/1/', function(error, response, body) {
-    res.send(response)
-  })
+app.get('/characterInfo', function (req, res) {
+  const name = req.query.name
+  request(
+    {
+      method: 'get',
+      url: `https://www.bungie.net/Platform/User/SearchUsers/?q=${name}`,
+      headers: {
+        'X-API-Key': '51ede73257c345afbde20e010b37dc57'
+      }
+    },
+    function(error, response, body) {
+      res.send(response)
+    }
+  )
 })
 //Create HTTP server and listen on port 3000 for requests
 // const server = http.createServer((req, res) => {

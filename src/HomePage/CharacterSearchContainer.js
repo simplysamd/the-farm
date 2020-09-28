@@ -1,18 +1,33 @@
-import React, {useState, useCallback} from 'react'
-import PropTypes from 'prop-types'
+import React, {useState, useCallback, useRef} from 'react'
 import CharacterNameInput from './CharacterNameInput'
-import {fetchSwapiLuke} from '../Data/dataCalls'
-import axios from 'axios'
+import {fetchUserInfo} from '../Data/dataCalls'
 
 const CharacterSearchContainer = () => {
-  const confirmUsername = useCallback(name => {
-    console.log('username is', name)
-    fetchSwapiLuke()
-      .then(res => console.log(res))
+  const [characterName, setCharName] = useState('')
+  const [characterId, setCharId] = useState('')
+  const inputRef = useRef({})
+
+  const handleNameChange = useCallback(e => {
+    const currVal = e.target.value
+    setCharName(currVal)
   }, [])
 
+  const handleKeyDown = useCallback(e => {
+    if (e.which === 13) {
+      fetchUserInfo(characterName)
+        .then(res => console.log(res))
+    }
+  }, [characterName])
+
   return (
-    <CharacterNameInput confirmUsername={confirmUsername} />
+    <div>
+      <CharacterNameInput
+        characterName={characterName}
+        handleNameChange={handleNameChange}
+        handleKeyDown={handleKeyDown}
+        inputRef={inputRef}
+      />
+    </div>
   )
 }
 
