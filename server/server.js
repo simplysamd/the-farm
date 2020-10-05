@@ -6,20 +6,21 @@ const PORT = 5000;
 const request = require('request')
 const express = require('express')
 const cors = require('cors')
+const secretKeyDontTell = require('./secretthing')
 
 const app = express()
 
 app.use(express.static(path.resolve(__dirname, '../src/build')));
 app.use(cors())
 
-app.get('/characterInfo', function (req, res) {
+app.get('/characterSearch', function (req, res) {
   const name = req.query.name
   request(
     {
       method: 'get',
-      url: `https://www.bungie.net/Platform/User/SearchUsers/?q=${name}`,
+      url: `https://www.bungie.net/Platform/Destiny2/SearchDestinyPlayer/3/${name}/`,
       headers: {
-        'X-API-Key': '51ede73257c345afbde20e010b37dc57'
+        'X-API-Key': secretKeyDontTell.myKey
       }
     },
     function(error, response, body) {
@@ -27,6 +28,40 @@ app.get('/characterInfo', function (req, res) {
     }
   )
 })
+
+app.get('/charactersForId', function(req, res) {
+  const id = req.query.id
+  request(
+    {
+      method: 'get',
+      url: `https://www.bungie.net/Platform/Destiny2/3/Profile/${id}/?components=100,200,1100`,
+      headers: {
+        'X-API-Key': secretKeyDontTell.myKey
+      }
+    },
+    function(error, response, body) {
+      res.send(response)
+    }
+  )
+})
+
+app.get('/characterById', function (req, res) {
+  const id = req.query.id
+  request(
+    {
+      method: 'get',
+      url: `https://www.bungie.net/Platform/User/GetMembershipsById/905770/3/`,
+      headers: {
+        'X-API-Key': secretKeyDontTell.myKey
+      }
+    },
+    function(error, response, body) {
+      console.log(response)
+      res.send(response)
+    }
+  )
+})
+
 //Create HTTP server and listen on port 3000 for requests
 // const server = http.createServer((req, res) => {
 //

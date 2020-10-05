@@ -1,11 +1,11 @@
 import React from 'react'
 import {HomePageHeader, CharacterSearchContainer} from '../HomePage'
 
-function HomePage () {
+function HomePage ({selChar, setSelChar}) {
   return (
     <div className='home-page-hero-container'>
       <HomePageHeader />
-      <CharacterSearchContainer />
+      <CharacterSearchContainer selChar={selChar} setSelChar={setSelChar} />
     </div>
   )
 }
